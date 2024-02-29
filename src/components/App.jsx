@@ -9,15 +9,8 @@ import styles from './styles.module.css';
 
 const LS_KEY = 'contacts';
 export const App = () => {
-  const [contacts, setContacts] = useState([]);
+  const [contacts, setContacts] = useState(getLocalStorage(LS_KEY) || []);
   const [filter, setFilter] = useState('');
-
-  useEffect(() => {
-    const contacts = getLocalStorage(LS_KEY);
-    if (contacts && contacts.length > 0) {
-      setContacts(contacts);
-    }
-  }, [setContacts]);
 
   useEffect(() => {
     setLocalStorage(LS_KEY, contacts);
